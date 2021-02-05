@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilizatori</title>
+</head>
+<body>
+    <h1>Utilizatori</h1>
+    {% for utilizator in utilizatori %}
+    <div class="responsive">
+      <div class="gallery">
+        <a href="{% url 'om' utilizator.id %}"
+          ><img src="{{utilizator.img.url}}" alt="none" height="200px" width="150px"
+        /></a>
+
+        <div class="descriere">
+          <h1>{{utilizator.nume}}</h1>
+          <h2>{{utilizator.date}}</h2>
+          <h3>Adaugat de {{utilizator.autor}}</h3>
+          
+           
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+</body>
+</html>
