@@ -11,8 +11,7 @@
           box-sizing: border-box;
         }
         .navbar {
-          background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
-                  
+            background:linear-gradient(to left , rgb(141, 45, 50) , rgb(122, 52, 87)  );                  
         }
   
         .links a:hover {
@@ -34,6 +33,10 @@
           color: white;
           font: 20px;
         }
+        #logo h1 {
+            font-size: 20px;
+            color: white;
+        }
         .clear {
           clear: both;
         }
@@ -43,18 +46,18 @@
             height: 100vh;
             background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
         }
-        h1 {
+        .descriere h1 {
             font-size: 30px;
             color: wheat;
             text-align: center;
             margin-top: 40px;
         }
-        h4 {
+        .descriere h4 {
             font-size: 30px;
             color: wheat;
             text-align: center;
         }
-        img {
+        .descriere img {
             height: 400px;
             width: auto;
             margin-left: 660px;
@@ -74,11 +77,11 @@
         </nav>
       </header>
     
-
+      <div class="descriere">
       <h1>{{om.nume}}</h1>
       <img src="{{om.img.url}}" height="300" width="300" />
       <h4>{{om.date}}</h4>
       <h4>{{om.description}}</h4>
-      
+    </div>
 </body>
 </html>
