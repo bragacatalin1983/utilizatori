@@ -4,9 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utilizatori</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .navbar {
+        background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
+                
+      }
+
+      .links a:hover {
+        color: rgb(33, 194, 235);
+      }
+      .links li {
+        display: inline;
+      }
+      .links a {
+        color: aliceblue;
+        float: right;
+        text-decoration: none;
+        font-size: 20px;
+        margin-left: 20px;
+      }
+
+      #logo {
+        float: left;
+        color: white;
+        font: 30px;
+      }
+      .clear {
+        clear: both;
+      }
+      form {
+          padding-top: 30px;
+      }
+      body {
+          height: 100vh;
+          background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
+      }
+      label {
+          color:white;
+      }
+      input {
+          margin-left:20px;
+          padding:5px;
+      }
+      button {
+          padding:6px 6px;
+          background-color: aqua;
+          text-align: center;
+          border-radius: 4px;
+          margin-left: 5px;
+      }
+      div.gallery {
+        margin: 35px;
+        border: 1px solid rgb(50, 13, 153);
+        float: left;
+        width: 300px;
+        height: 400px;
+        background-color: rgb(248, 248, 248);
+        border-radius: 10px;
+        position: relative;
+      }
+
+      div.gallery:hover {
+        border: 1px solid rgb(226, 15, 15);
+      }
+
+      div.gallery img {
+        width: 100%;
+        height: 250px;
+        border-radius: 5px;
+        border-radius: 10px;
+      }
+      .descriere h1 {
+        margin-top: 10px;
+        font-size: 15px;
+        text-align: center;
+      }
+      .descriere h2 {
+        margin-top: 10px;
+        font-size: 15px;
+        text-align: center;
+      }
+      .descriere h3 {
+        margin-top: 10px;
+        font-size: 15px;
+        text-align: center;
+      }
+    </style>
 </head>
 <body>
-    <h1>Utilizatori</h1>
+    
+    <header>
+      <nav class="navbar">
+        <h1 id="logo">Baza de date a utilizatorilor cu permis inregistrati in Biblioteca</h1>
+        <ul class="links">
+          <li><a href="{% url 'home' %}">Acasa</a></li>
+          <li><a href="{% url 'utilizatori' %}">Utilizatori</a></li>
+          
+          <div class="clear"></div>
+        </ul>
+      </nav>
+    </header>
     {% for utilizator in utilizatori %}
     <div class="responsive">
       <div class="gallery">
@@ -15,15 +117,18 @@
         /></a>
 
         <div class="descriere">
-          <h1>{{utilizator.nume}}</h1>
-          <h2>{{utilizator.date}}</h2>
+          <h1>Nume: {{utilizator.nume}}</h1>
+          <h2>Data adaugarii: {{utilizator.date}}</h2>
+          <h2>CNP:{{utilizator.cnp}}</h2>
           <h3>Adaugat de {{utilizator.autor}}</h3>
-          
-           
+         
+         
         </div>
       </div>
+      
     </div>
 
     {% endfor %}
+    
 </body>
 </html>

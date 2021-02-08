@@ -6,4 +6,5 @@ urlpatterns = [
 
     path('', views.utilizatori, name='utilizatori'),
     path('om/<int:pk_id>', views.om, name='om'),
+    path('results/', views.search, name='search'),
 ]

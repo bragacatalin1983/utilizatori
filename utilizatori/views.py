@@ -1,22 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Utilizatori
+from django.db.models import Q
 
 
 def home(request):
-    if request.method == 'GET':
-        return render(request, 'home.html')
-    else:
-        user_name = request.POST['username']
 
-        qs = Utilizatori.objects.filter(nume__icontains="user_name")
-        if qs == True:
-            return render(request, 'home.html', {'rezultat': 'DA'})
-        else:
-            return render(request, 'home.html', {'rezultat': 'Nu exista in baza de date'})
+    return render(request, 'home.html')
 
 
 def utilizatori(request):
-    utilizatori = Utilizatori.objects.order_by('-date')
+    utilizatori = Utilizatori.objects.order_by('nume')
 
     context = {
         'utilizatori': utilizatori,
@@ -28,3 +21,14 @@ def utilizatori(request):
 def om(request, pk_id):
     om = get_object_or_404(Utilizatori, pk=pk_id)
     return render(request, 'om.html', {'om': om})
+
+
+def search(request):
+    template = 'home.html'
+    query = request.GET.get('q')
+    results = Utilizatori.objects.filter(
+        Q(nume__icontains=query) | Q(cnp__icontains=query))
+    context = {
+        'items': results}
+
+    return render(request, template, context)

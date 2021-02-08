@@ -4,23 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .navbar {
+        background:linear-gradient(to left , rgb(141, 45, 50) , rgb(122, 52, 87)  );
+                
+      }
+
+      .links a:hover {
+        color: rgb(33, 194, 235);
+      }
+      .links li {
+        display: inline;
+               
+      }
+      .links a {
+        color: aliceblue;
+        float: right;
+        text-decoration: none;
+        font-size: 20px;
+        margin-left: 20px;
+        padding-right: 20px; 
+        padding-top:3px;
+
+      }
+
+      #logo {
+        float: left;
+        color: white;
+        font: 30px;
+        font-family: 'Lora', serif;
+      }
+      .clear {
+        clear: both;
+      }
+      form {
+          padding-top: 30px;
+      }
+      body {
+          height: 100vh;
+          background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
+          position:relative;
+      }
+      label {
+          color:white;
+      }
+      input {
+          margin-left:20px;
+          padding:5px;
+      }
+      button {
+          padding:6px 6px;
+          background-color: aqua;
+          text-align: center;
+          border-radius: 4px;
+          margin-left: 5px;
+      }
+      .rezultat {
+        position: relative;
+        height: 400px;
+        width: 300px;
+        background: linear-gradient(to right , rgb(141, 226, 169) , green);
+        margin: 50px 30px;
+        border: 2px rgb(48, 8, 121) solid;
+        border-radius: 11px;
+        float: left;
+         }
+         .rezultat h1 {
+             font-size: 30px;
+             text-align: center;
+             margin-top: 10px;
+             font-family: 'Lora', serif;
+         }
+         .rezultat h2 {
+             font-size: 20px;
+             text-align: center;
+             margin-top: 10px;
+             font-family: 'Lora', serif;
+         }
+         .rezultat h3 {
+             font-size: 15px;
+             text-align: center;
+             margin-top: 10px;
+             font-family: 'Lora', serif;
+         }
+         .rezultat img {
+             margin-top: 10px;
+            margin-left:70px;
+         }
+         
+    </style>
 </head>
 <body>
-    <h1>Homepage</h1>
-    <a href="{% url 'utilizatori' %}">Utilizatori</a>
-    <form method="POST">
+    <header>
+        <nav class="navbar">
+          <h1 id="logo">Baza de date a utilizatorilor cu permis inregistrati in Biblioteca</h1>
+          <ul class="links">
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li><a href="{% url 'utilizatori' %}">Utilizatori</a></li>
+            
+            <div class="clear"></div>
+          </ul>
+        </nav>
+      </header>
+    
+    <form method="GET" action="{% url 'search' %}">
         {%csrf_token%}
         <label for="username">Username</label>
         <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Your name.."
+          
+          value="{{request.GET.q}}"
+          name="q"
+          placeholder="search"
         />
-        <input type="submit" value="Submit" />
+        <button type="submit">search</button>
     </form>
+    <div class="main">
+      
+        {% for i in items %}
+        <div class="rezultat">
+        <h1>Nume: {{i.nume}}</h1>
+        <h2>CNP: {{i.cnp}}</h2>
+        <img src="{{i.img.url}}" alt="none" height="200px" width="150px"
+        />
+        <h2>Data adaugarii: {{i.date}}</h2>
+        <h3>Adaugat de {{i.autor}}</h3>
+        
+        </div>
+        {% endfor %}
+    </div>
     
-    <h1>{{rezultat}}</h1>
     
 </body>
 </html>

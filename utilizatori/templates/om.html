@@ -4,13 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Om</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        .navbar {
+          background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
+                  
+        }
+  
+        .links a:hover {
+          color: rgb(33, 194, 235);
+        }
+        .links li {
+          display: inline;
+        }
+        .links a {
+          color: aliceblue;
+          float: right;
+          text-decoration: none;
+          font-size: 20px;
+          margin-left: 20px;
+        }
+  
+        #logo {
+          float: left;
+          color: white;
+          font: 20px;
+        }
+        .clear {
+          clear: both;
+        }
+        
+        
+        body {
+            height: 100vh;
+            background:linear-gradient(to left , rgb(21, 36, 49) , rgb(32, 93, 149)  );
+        }
+        h1 {
+            font-size: 30px;
+            color: wheat;
+            text-align: center;
+            margin-top: 40px;
+        }
+        h4 {
+            font-size: 30px;
+            color: wheat;
+            text-align: center;
+        }
+        img {
+            height: 400px;
+            width: auto;
+            margin-left: 660px;
+        }
+        </style>
 </head>
 <body>
-    <h1>detalii persoana</h1>
+    <header>
+        <nav class="navbar">
+          <h1 id="logo">Detalii persoana</h1>
+          <ul class="links">
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li><a href="{% url 'utilizatori' %}">Utilizatori</a></li>
+            
+            <div class="clear"></div>
+          </ul>
+        </nav>
+      </header>
+    
 
       <h1>{{om.nume}}</h1>
       <img src="{{om.img.url}}" height="300" width="300" />
       <h4>{{om.date}}</h4>
+      <h4>{{om.description}}</h4>
       
 </body>
 </html>
